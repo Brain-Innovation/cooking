@@ -32,7 +32,7 @@ public class ItemRepositoryTest {
   }
 
   @Test
-  public void can_create_and_load_item_by_name_test() {
+  public void can_create_and_load_one_item_by_name_test() {
     String name = "Rice";
 
     Item created = new Item("Rice", 12.5, LocalDate.now(), "B15 1TR", "Morrisons");
@@ -55,13 +55,15 @@ public class ItemRepositoryTest {
   public void can_create_and_load_all_items_test() {
     Item create1 = new Item("Rice", 12.5, LocalDate.now(), "B15 1TR", "Morrisons");
     Item create2 = new Item("Biscuit", 1.25, LocalDate.now(), "B15 1TR", "Morrisons");
+    Item create3 = new Item("Biscuit", 1.19, LocalDate.now(), "B15 1TR", "Sainsburys");
 
     Item expected1 = dao.createItem(create1);
     Item expected2 = dao.createItem(create2);
+    Item expected3 = dao.createItem(create3);
 
     List<Item> actualItems = dao.getAllItems();
 
-    assertThat(actualItems).hasSize(2);
+    assertThat(actualItems).hasSize(3);
 
     Item actualItem1 = actualItems.get(0);
     assertThat(actualItem1.getName()).isEqualTo(expected1.getName());
@@ -76,5 +78,43 @@ public class ItemRepositoryTest {
     assertThat(actualItem2.getPriceDate()).isEqualTo(expected2.getPriceDate());
     assertThat(actualItem2.getLocation()).isEqualTo(expected2.getLocation());
     assertThat(actualItem2.getStore()).isEqualTo(expected2.getStore());
+
+    Item actualItem3 = actualItems.get(2);
+    assertThat(actualItem3.getName()).isEqualTo(expected3.getName());
+    assertThat(actualItem3.getPrice()).isEqualTo(expected3.getPrice());
+    assertThat(actualItem3.getPriceDate()).isEqualTo(expected3.getPriceDate());
+    assertThat(actualItem3.getLocation()).isEqualTo(expected3.getLocation());
+    assertThat(actualItem3.getStore()).isEqualTo(expected3.getStore());
+  }
+
+  @Test
+  public void can_create_and_load_items_by_name_test() {
+    String itemName = "Biscuit";
+
+    Item create1 = new Item("Rice", 12.5, LocalDate.now(), "B15 1TR", "Morrisons");
+    Item create2 = new Item("Biscuit", 1.25, LocalDate.now(), "B15 1TR", "Morrisons");
+    Item create3 = new Item("Biscuit", 1.19, LocalDate.now(), "B15 1TR", "Sainsburys");
+
+    Item expected1 = dao.createItem(create1);
+    Item expected2 = dao.createItem(create2);
+    Item expected3 = dao.createItem(create3);
+
+    List<Item> actualItems = dao.getItemsByName(itemName);
+
+    assertThat(actualItems).hasSize(2);
+
+    Item actualItem1 = actualItems.get(0);
+    assertThat(actualItem1.getName()).isEqualTo(expected2.getName());
+    assertThat(actualItem1.getPrice()).isEqualTo(expected2.getPrice());
+    assertThat(actualItem1.getPriceDate()).isEqualTo(expected2.getPriceDate());
+    assertThat(actualItem1.getLocation()).isEqualTo(expected2.getLocation());
+    assertThat(actualItem1.getStore()).isEqualTo(expected2.getStore());
+
+    Item actualItem2 = actualItems.get(1);
+    assertThat(actualItem2.getName()).isEqualTo(expected3.getName());
+    assertThat(actualItem2.getPrice()).isEqualTo(expected3.getPrice());
+    assertThat(actualItem2.getPriceDate()).isEqualTo(expected3.getPriceDate());
+    assertThat(actualItem2.getLocation()).isEqualTo(expected3.getLocation());
+    assertThat(actualItem2.getStore()).isEqualTo(expected3.getStore());
   }
 }
