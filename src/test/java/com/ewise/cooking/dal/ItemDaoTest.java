@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles({"test"})
 @EnableAutoConfiguration
 @SpringBootTest
-public class ItemRepositoryTest {
+public class ItemDaoTest {
 
   @Autowired
   protected ItemRepository repo;

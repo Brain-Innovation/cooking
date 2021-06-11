@@ -1,28 +1,25 @@
-package com.ewise.cooking.beans;
+package com.ewise.cooking.rest;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
-public class Item {
+public class RestItem {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
   private double price;
+  @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate priceDate;
   private String location;
   private String store;
 
-  public Item() {
+  public RestItem() {
     super();
   }
 
-  public Item(String name, double price, LocalDate priceDate, String location, String store) {
+  public RestItem(String name, double price, LocalDate priceDate, String location,
+      String store) {
     this();
     this.name = name;
     this.price = price;
@@ -31,26 +28,18 @@ public class Item {
     this.store = store;
   }
 
-  public Item(Long id, String name, double price, LocalDate priceDate, String location,
+  public RestItem(Long id, String name, double price, LocalDate priceDate, String location,
       String store) {
     this(name, price, priceDate, location, store);
     this.id = id;
   }
 
-  @Override
-  public String toString() {
-    return "Item{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", price=" + price +
-        ", priceDate=" + priceDate +
-        ", location='" + location + '\'' +
-        ", store='" + store + '\'' +
-        '}';
-  }
-
   public Long getId() {
     return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {
