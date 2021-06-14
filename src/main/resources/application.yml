@@ -1,0 +1,6 @@
+server:
+  port: 8280
+
+spring:
+  banner:
+    location: classpath:cooking-banner.txt
