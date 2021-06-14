@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Transactional(rollbackFor = {Exception.class})
-public class CookingService {
+public class ItemService {
 
   @Autowired
   private ItemDao itemDao;

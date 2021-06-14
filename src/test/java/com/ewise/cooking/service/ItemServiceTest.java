@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles({"test"})
 @EnableAutoConfiguration
 @SpringBootTest
-public class CookingServiceTest {
+public class ItemServiceTest {
 
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
@@ -33,7 +33,7 @@ public class CookingServiceTest {
   private ItemDao itemDao;
 
   @Autowired
-  private CookingService service;
+  private ItemService service;
 
   @Test
   public void canConvertToDal() {
